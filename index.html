@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOCL Unified Command Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    
+    <header>
+        <div class="logo-container">
+            <span class="logo-text">OOCL <span class="accent">HUB</span></span>
+        </div>
+        <div class="status-indicator">
+            <div class="pulse-dot"></div>
+            <span>Systèmes Opérationnels</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero">
+            <h1>Bienvenue dans votre <span class="gradient-text">Centre de Commande Unique</span></h1>
+            <p>Accédez instantanément à tous vos outils logistiques et gérez vos opérations OOCL en un clin d'œil.</p>
+        </div>
+
+        <div class="project-grid">
+            <!-- Draft Web OOCL -->
+            <div class="project-card" onclick="window.open('https://draft-web-oocl.vercel.app', '_blank')">
+                <div class="card-image">
+                    <img src="draft_web_icon_1773697156227.png" alt="Draft Web">
+                </div>
+                <div class="card-content">
+                    <h3>Draft Web OOCL</h3>
+                    <p>Gestion et soumission des drafts en ligne. Rapide et sécurisé.</p>
+                    <div class="card-footer">
+                        <span class="badge">Next.js</span>
+                        <i data-lucide="external-link"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gestion BL Export -->
+            <div class="project-card" onclick="window.open('https://gestion-bls-export-oocl.vercel.app', '_blank')">
+                <div class="card-image">
+                    <img src="bl_export_icon_1773697194227.png" alt="BL Export">
+                </div>
+                <div class="card-content">
+                    <h3>Gestion BLs Export</h3>
+                    <p>Suivi complet des connaissements à l'exportation.</p>
+                    <div class="card-footer">
+                        <span class="badge">Prisma</span>
+                        <i data-lucide="external-link"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gestion des Navires -->
+            <div class="project-card" onclick="window.open('https://gestion-des-navires.vercel.app', '_blank')">
+                <div class="card-image">
+                    <img src="navires_icon_1773697174444.png" alt="Navires">
+                </div>
+                <div class="card-content">
+                    <h3>Gestion des Navires</h3>
+                    <p>Monitoring en temps réel de la flotte et des escales.</p>
+                    <div class="card-footer">
+                        <span class="badge">Live Fleet</span>
+                        <i data-lucide="external-link"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suivi Caution -->
+            <div class="project-card" onclick="window.open('https://suivi-caution-web.vercel.app', '_blank')">
+                <div class="card-image">
+                    <img src="caution_icon_1773697211676.png" alt="Suivi Caution">
+                </div>
+                <div class="card-content">
+                    <h3>Suivi Caution Web</h3>
+                    <p>Gestion des dépôts de garantie et cautions financières.</p>
+                    <div class="card-footer">
+                        <span class="badge">Finance</span>
+                        <i data-lucide="external-link"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manifest Matcher -->
+            <div class="project-card shadow-accent" onclick="window.open('https://manifest-matcher.vercel.app', '_blank')">
+                <div class="card-image">
+                    <img src="manifest_matcher_icon_1773697224450.png" alt="Manifest Matcher">
+                </div>
+                <div class="card-content">
+                    <h3>Manifest Matcher</h3>
+                    <p>Outil intelligent de réconciliation et matching de manifestes.</p>
+                    <div class="card-footer">
+                        <span class="badge python">Python Core</span>
+                        <i data-lucide="external-link"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 OOCL Logistics. Interface conçu pour l'excellence opérationnelle.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

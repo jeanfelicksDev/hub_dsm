@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "name": "oocl-hub",
+  "cleanUrls": true,
+  "framework": null,
+  "installCommand": "npm install",
+  "build": {
+    "src": "index.html",
+    "use": "@vercel/static"
+  }
+}

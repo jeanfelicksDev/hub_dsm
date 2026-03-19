@@ -36,6 +36,17 @@ body {
     z-index: -1;
 }
 
+/* --- Scène Océan Animée (Canvas) --- */
+#oceanCanvas {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0; /* Derrière le contenu principal qui est z-index: 1 */
+    pointer-events: none; /* Laisse passer les clics vers le contenu en dessous */
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -90,6 +101,8 @@ main {
     padding: 4rem 5%;
     max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .hero {
@@ -107,7 +120,9 @@ main {
 .gradient-text {
     background: linear-gradient(90deg, #0070f3, #00dfd8);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 .hero p {
@@ -142,22 +157,68 @@ main {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-.card-image {
-    height: 200px;
-    overflow: hidden;
+/* --- Zone Icône --- */
+.card-icon {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    background: #000;
+    overflow: hidden;
 }
 
-.card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
+.card-icon i,
+.card-icon svg {
+    width: 38px;
+    height: 38px;
+    color: rgba(255, 255, 255, 0.9);
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 2;
 }
 
-.project-card:hover .card-image img {
-    transform: scale(1.15);
+.project-card:hover .card-icon i,
+.project-card:hover .card-icon svg {
+    transform: scale(1.2) translateY(-3px);
+}
+
+/* Cercle décoratif derrière l'icône */
+.card-icon::before {
+    content: '';
+    position: absolute;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    z-index: 1;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .card-icon::before {
+    transform: scale(1.3);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Dégradés uniques par carte */
+.icon-draft {
+    background: linear-gradient(135deg, #0070f3 0%, #0041a8 100%);
+}
+
+.icon-export {
+    background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+}
+
+.icon-navires {
+    background: linear-gradient(135deg, #06b6d4 0%, #0e7490 100%);
+}
+
+.icon-caution {
+    background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+}
+
+.icon-manifest {
+    background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
 }
 
 .card-content {

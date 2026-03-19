@@ -12,7 +12,10 @@
 </head>
 <body>
     <div class="background-overlay"></div>
-    
+
+    <!-- Fond animé : canvas bateau et vagues -->
+    <canvas id="oceanCanvas"></canvas>
+
     <header>
         <div class="logo-container">
             <span class="logo-text">OOCL <span class="accent">HUB</span></span>
@@ -32,8 +35,8 @@
         <div class="project-grid">
             <!-- Draft Web OOCL -->
             <div class="project-card" onclick="window.open('https://draft-web-oocl.vercel.app', '_blank')">
-                <div class="card-image">
-                    <img src="draft_web_icon_1773697156227.png" alt="Draft Web">
+                <div class="card-icon icon-draft">
+                    <i data-lucide="file-text"></i>
                 </div>
                 <div class="card-content">
                     <h3>Draft Web OOCL</h3>
@@ -47,8 +50,8 @@
 
             <!-- Gestion BL Export -->
             <div class="project-card" onclick="window.open('https://gestion-bls-export-oocl.vercel.app', '_blank')">
-                <div class="card-image">
-                    <img src="bl_export_icon_1773697194227.png" alt="BL Export">
+                <div class="card-icon icon-export">
+                    <i data-lucide="package"></i>
                 </div>
                 <div class="card-content">
                     <h3>Gestion BLs Export</h3>
@@ -62,8 +65,8 @@
 
             <!-- Gestion des Navires -->
             <div class="project-card" onclick="window.open('https://suivi-navire-dsm.vercel.app/', '_blank')">
-                <div class="card-image">
-                    <img src="navires_icon_1773697174444.png" alt="Navires">
+                <div class="card-icon icon-navires">
+                    <i data-lucide="ship"></i>
                 </div>
                 <div class="card-content">
                     <h3>Gestion des Navires</h3>
@@ -77,8 +80,8 @@
 
             <!-- Suivi Caution -->
             <div class="project-card" onclick="window.open('https://suivi-caution-web.vercel.app', '_blank')">
-                <div class="card-image">
-                    <img src="caution_icon_1773697211676.png" alt="Suivi Caution">
+                <div class="card-icon icon-caution">
+                    <i data-lucide="shield-check"></i>
                 </div>
                 <div class="card-content">
                     <h3>Suivi Caution Web</h3>
@@ -92,8 +95,8 @@
 
             <!-- Manifest Matcher -->
             <div class="project-card shadow-accent" onclick="window.open('https://manifest-matcher.vercel.app', '_blank')">
-                <div class="card-image">
-                    <img src="manifest_matcher_icon_1773697224450.png" alt="Manifest Matcher">
+                <div class="card-icon icon-manifest">
+                    <i data-lucide="git-compare"></i>
                 </div>
                 <div class="card-content">
                     <h3>Manifest Matcher</h3>

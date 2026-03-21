@@ -221,6 +221,10 @@ main {
     background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
 }
 
+.icon-opencode {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+}
+
 .card-content {
     padding: 1.5rem;
     flex-grow: 1;

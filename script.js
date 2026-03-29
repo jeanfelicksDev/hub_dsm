@@ -15,9 +15,9 @@ window.addEventListener('resize', resizeCanvas);
 
 // --- Vagues ---
 const waves = [
-    { amplitude: 18, wavelength: 0.008, speed: 0.003, yBase: 0.88, color: 'rgba(0, 112, 243, 0.22)', offset: 0 },
-    { amplitude: 12, wavelength: 0.010, speed: 0.002, yBase: 0.91, color: 'rgba(0, 180, 216, 0.16)', offset: 30 },
-    { amplitude: 8,  wavelength: 0.013, speed: 0.0015, yBase: 0.94, color: 'rgba(0, 223, 216, 0.10)', offset: 60 },
+    { amplitude: 18, wavelength: 0.008, speed: 0.003, yBase: 0.88, color: 'rgba(0, 112, 243, 0.35)', offset: 0 },
+    { amplitude: 12, wavelength: 0.010, speed: 0.002, yBase: 0.91, color: 'rgba(0, 180, 216, 0.25)', offset: 30 },
+    { amplitude: 8,  wavelength: 0.013, speed: 0.0015, yBase: 0.94, color: 'rgba(0, 223, 216, 0.15)', offset: 60 },
 ];
 
 function drawWave(wave, time) {
@@ -37,6 +37,40 @@ function drawWave(wave, time) {
     ctx.closePath();
     ctx.fillStyle = wave.color;
     ctx.fill();
+}
+
+// --- Oiseaux (Nouveau) ---
+const birds = Array.from({ length: 6 }, () => ({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * (window.innerHeight * 0.4),
+    vx: 0.5 + Math.random() * 1.5,
+    vy: Math.random() * 0.2,
+    size: 2 + Math.random() * 4,
+    offset: Math.random() * Math.PI * 2
+}));
+
+function drawBirds(time) {
+    ctx.save();
+    ctx.strokeStyle = '#475569';
+    ctx.lineWidth = 1.5;
+    ctx.lineCap = 'round';
+
+    birds.forEach(bird => {
+        bird.x += bird.vx;
+        bird.y += Math.sin(time * 0.005 + bird.offset) * 0.2;
+        if (bird.x > canvas.width + 50) bird.x = -50;
+
+        const wingSpread = Math.sin(time * 0.01 + bird.offset) * bird.size;
+        
+        ctx.beginPath();
+        // Aile gauche
+        ctx.moveTo(bird.x - bird.size, bird.y - wingSpread);
+        ctx.lineTo(bird.x, bird.y);
+        // Aile droite
+        ctx.lineTo(bird.x + bird.size, bird.y - wingSpread);
+        ctx.stroke();
+    });
+    ctx.restore();
 }
 
 // --- Bateau Cargo ---
@@ -65,7 +99,7 @@ function drawBoat(time) {
     ctx.save();
     ctx.translate(boat.x + boat.width / 2, baseY);
     ctx.rotate(tiltAngle);
-    ctx.globalAlpha = 0.55;
+    ctx.globalAlpha = 0.8; // Plus visible sur fond clair
 
     const s = 1.2; // échelle
     ctx.scale(s, s);
@@ -77,8 +111,8 @@ function drawBoat(time) {
     ctx.lineTo(110, 30);
     ctx.lineTo(95, 10);
     ctx.closePath();
-    ctx.fillStyle = '#1a3a5c';
-    ctx.strokeStyle = '#2a6090';
+    ctx.fillStyle = '#1e293b'; // Coque plus sombre/définie
+    ctx.strokeStyle = '#0f172a';
     ctx.lineWidth = 1.5;
     ctx.fill();
     ctx.stroke();
@@ -87,42 +121,41 @@ function drawBoat(time) {
     ctx.beginPath();
     ctx.moveTo(-97, 15);
     ctx.lineTo(97, 15);
-    ctx.strokeStyle = '#c0392b';
+    ctx.strokeStyle = '#ef4444';
     ctx.lineWidth = 3;
     ctx.stroke();
 
     // --- Pont ---
-    ctx.fillStyle = '#1e4575';
+    ctx.fillStyle = '#334155';
     ctx.fillRect(-90, -5, 180, 15);
 
     // --- Conteneurs rangée basse ---
-    const containers1 = ['#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6', '#1abc9c'];
+    const containers1 = ['#ef4444', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#06b6d4'];
     containers1.forEach((color, i) => {
         ctx.fillStyle = color;
-        ctx.globalAlpha = 0.65;
+        ctx.globalAlpha = 0.85;
         ctx.fillRect(-85 + i * 26, -25, 22, 20);
-        // Bord du conteneur
-        ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+        ctx.strokeStyle = 'rgba(255,255,255,0.2)';
         ctx.lineWidth = 0.5;
         ctx.strokeRect(-85 + i * 26, -25, 22, 20);
     });
 
     // --- Conteneurs rangée haute ---
-    const containers2 = ['#e67e22', '#2980b9', '#27ae60', '#8e44ad'];
+    const containers2 = ['#f97316', '#2563eb', '#16a34a', '#7c3aed'];
     containers2.forEach((color, i) => {
         ctx.fillStyle = color;
-        ctx.globalAlpha = 0.55;
+        ctx.globalAlpha = 0.8;
         ctx.fillRect(-60 + i * 26, -44, 22, 19);
-        ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+        ctx.strokeStyle = 'rgba(255,255,255,0.2)';
         ctx.lineWidth = 0.5;
         ctx.strokeRect(-60 + i * 26, -44, 22, 19);
     });
 
-    ctx.globalAlpha = 0.55;
+    ctx.globalAlpha = 0.85;
 
     // --- Cabine de pilotage ---
-    ctx.fillStyle = '#152d4a';
-    ctx.strokeStyle = '#2a6090';
+    ctx.fillStyle = '#1e293b';
+    ctx.strokeStyle = '#0f172a';
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.roundRect(65, -42, 28, 37, 3);
@@ -130,28 +163,28 @@ function drawBoat(time) {
     ctx.stroke();
 
     // Fenêtres de la cabine
-    ctx.fillStyle = 'rgba(100, 200, 255, 0.35)';
+    ctx.fillStyle = 'rgba(186, 230, 253, 0.6)';
     ctx.fillRect(68, -38, 22, 10);
     ctx.fillRect(68, -24, 22, 8);
 
     // --- Cheminée ---
-    ctx.fillStyle = '#c0392b';
+    ctx.fillStyle = '#ef4444';
     ctx.fillRect(78, -60, 12, 22);
-    ctx.fillStyle = '#2c3e50';
+    ctx.fillStyle = '#0f172a';
     ctx.fillRect(78, -60, 12, 6);
 
     // --- Fumée (cercles flottants) ---
     const smokeTime = time * 0.005;
     for (let i = 0; i < 4; i++) {
-        const progress = ((smokeTime + i * 0.8) % 3) / 3; // 0→1
+        const progress = ((smokeTime + i * 0.8) % 3) / 3; 
         const smokeY = -60 - progress * 40;
         const smokeX = 84 + Math.sin(progress * 5) * 8;
         const smokeR = 4 + progress * 8;
-        const smokeAlpha = (1 - progress) * 0.2;
+        const smokeAlpha = (1 - progress) * 0.4;
 
         ctx.beginPath();
         ctx.arc(smokeX, smokeY, smokeR, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(200, 220, 255, ${smokeAlpha})`;
+        ctx.fillStyle = `rgba(148, 163, 184, ${smokeAlpha})`;
         ctx.fill();
     }
 
@@ -163,10 +196,11 @@ function drawBoat(time) {
 function animate(time) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    drawWave(waves[2], time); // vague de fond (la plus claire)
+    drawBirds(time);
+    drawWave(waves[2], time);
     drawWave(waves[1], time);
     drawBoat(time);
-    drawWave(waves[0], time); // vague de premier plan (passe devant le bateau)
+    drawWave(waves[0], time); 
 
     requestAnimationFrame(animate);
 }
